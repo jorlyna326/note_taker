@@ -21,6 +21,17 @@ app.get("/api/notes", (req, res) => {
   res.json(notes)
 })
 
+app.post("/api/notes",(req, res) => {
+  
+  notes.push(req.body)
+
+  fs.writeFile("./db/db.json", JSON.stringify(notes), (err) =>
+    err ? console.log(err) : console.log('Successfully created!')
+  );
+  
+  res.json('updated')
+
+})
 
 // GET /notes should return the notes.html file.
 app.get('/notes', (req, res) =>
